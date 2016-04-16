@@ -13,12 +13,12 @@ import blueteam.mypantry.ui.adapters.btListViewAdapter;
 public class btView_Pantry extends Activity {
     @Override
     protected void onCreate( Bundle SavedInstanceState ) {
-        super.onCreate(SavedInstanceState);
-        setContentView(R.layout.btui_view_pantry);
+        super.onCreate( SavedInstanceState );
+        setContentView( R.layout.btui_view_pantry );
 
-        ListView view = (ListView)findViewById(R.id.PantryList);
-        Adapter = new btListViewAdapter( this, PantryContents);
-        view.setAdapter(Adapter);
+        ListView view = (ListView)findViewById( R.id.PantryList );
+        Adapter = new btListViewAdapter( this, PantryContents );
+        view.setAdapter( Adapter );
 
         for( int Index = 0; Index < 50; Index++ ) {
             btListViewAdapterData Data = new btListViewAdapterData( ( "Object" + Index ), ( new String( "[" + Index + "]" ) ) );

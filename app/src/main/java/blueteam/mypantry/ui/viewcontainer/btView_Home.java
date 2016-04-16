@@ -31,20 +31,61 @@ import blueteam.mypanty.R;
 
 
 public class btView_Home extends Activity {
-
     @Override
     protected void onCreate( Bundle SavedState ) {
         super.onCreate( SavedState );
 
         setContentView( R.layout.btui_view_container );
-        //indInterface();
 
-        //CreateTestData();
+        ButtonAdd = (Button)findViewById( R.id.ButtonAdd );
+        ButtonAdd.setOnClickListener( new OnClickListener() {
+            @Override
+            public void onClick( View CallingView ) {
+                OnClick_AddButton( CallingView );
+            }
+        } );
 
         // Start async threads.
         new btConnectionWatcher().start();
         new btLocalDatabaseSyncer().start();
     }
+
+    private void OnClick_AddButton( View CallingView ) {
+        final btLocalScopeAccessor Accessor = new btLocalScopeAccessor();
+        Accessor.Bind( "ThisView", this );
+
+        new AlertDialog.Builder( CallingView.getContext() )
+                .setTitle( "Add" )
+                .setMessage( "You may select 'Scan' to scan a barcode, or 'Manual' for manual product entry" )
+                .setPositiveButton( "Manual", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick( DialogInterface dialog, int Witch ) {
+                        btActivityPersistence.AddKeyValuePair( "AddMethod", btAddMethod.Manual );
+                        btActivityHelpers.SwitchView( (Activity)Accessor.Access( "ThisView " ).InternalObject, btView_ProductDetails.class );
+                    }
+                })
+                .setNegativeButton( "Scan", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick( DialogInterface Dialog, int Which ) {
+                        Intent NewIntent = new Intent( "com.google.zxing.client.android.SCAN" );
+                        NewIntent.putExtra( "SCAN_MODE", "QR_CODE_MODE" );
+
+                        startActivityForResult( NewIntent, 0 );
+                        IntentIntegrator Integrator = new IntentIntegrator( (Activity)Accessor.Access( "ThisView" ).InternalObject );
+
+                        Integrator.setDesiredBarcodeFormats( IntentIntegrator.ONE_D_CODE_TYPES );
+                        Integrator.setPrompt( "Scan a UPC" );
+                        Integrator.setCameraId( 0 );  // Use a specific camera of the device
+                        Integrator.setBeepEnabled( false );
+
+                        Integrator.initiateScan();
+                    }
+                } )
+                .setIcon( android.R.drawable.ic_dialog_alert )
+                .show();
+    }
+
+    private Button ButtonAdd;
 
     /*
     @Override

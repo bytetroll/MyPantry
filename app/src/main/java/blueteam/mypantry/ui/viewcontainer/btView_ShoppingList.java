@@ -11,7 +11,7 @@ import blueteam.mypanty.R;
 public class btView_ShoppingList extends Activity {
     @Override
     protected void onCreate( Bundle SavedInstanceState ) {
-        super.onCreate(SavedInstanceState);
-        setContentView(R.layout.btui_view_pantry);
+        super.onCreate( SavedInstanceState );
+        setContentView( R.layout.btui_view_pantry );
     }
 }

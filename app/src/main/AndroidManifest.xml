@@ -10,7 +10,7 @@
 
         <activity
             android:name="blueteam.mypantry.ui.btViewContainer"
-            android:label="LABEL FOR ACTIVITY "
+            android:label="MyPantry"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,21 +21,21 @@
 
         <activity
                 android:name="blueteam.mypantry.ui.viewcontainer.btView_Home"
-                android:label="LABEL FOR ACTIVITY "
+                android:label="MyPantry"
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         </activity>
 
         <activity
                 android:name="blueteam.mypantry.ui.viewcontainer.btView_ShoppingList"
-                android:label="LABEL FOR ACTIVITY "
+                android:label="AMyPantry"
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         </activity>
 
         <activity
                 android:name="blueteam.mypantry.ui.viewcontainer.btView_Pantry"
-                android:label="LABEL FOR ACTIVITY "
+                android:label="MyPantry"
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         </activity>

@@ -1,6 +1,7 @@
 package blueteam.mypantry.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,10 +26,10 @@ public class btViewContainer extends Activity {
 
         // Bind container reference.
         HorizontalScrollViewRoot = (HorizontalScrollView)findViewById( R.id.HorizontalScrollViewRoot );
-        InnerLay = (LinearLayout)findViewById(R.id.innerLay);
+        InnerLay = (LinearLayout)findViewById( R.id.innerLay );
 
         // Bind our previous and next views.
-        PreviousView = (LinearLayout)getLayoutInflater().inflate(R.layout.btui_view_pantry, null); //(LinearLayout)findViewById( R.id.LinearLayoutPantry );
+        PreviousView = (LinearLayout)getLayoutInflater().inflate( R.layout.btui_view_pantry, null ); //(LinearLayout)findViewById( R.id.LinearLayoutPantry );
         NextView = (LinearLayout)getLayoutInflater().inflate( R.layout.btui_view_shopping_list, null );//(LinearLayout)findViewById( R.id.LinearLayoutShoppingList );
 
         GestureWatcher = new GestureDetector( new InternalGestureDetector() );
@@ -44,7 +45,7 @@ public class btViewContainer extends Activity {
 
         Views = new ArrayList< LinearLayout >();
 
-        LayoutParameters = new LinearLayout.LayoutParams( ViewWidth, ViewGroup.LayoutParams.WRAP_CONTENT );
+        LayoutParameters = new LinearLayout.LayoutParams( LocalDisplay.getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT );
 
         HomeView.setLayoutParams( LayoutParameters );
         ShoppingListView.setLayoutParams( LayoutParameters );
@@ -53,12 +54,12 @@ public class btViewContainer extends Activity {
         // Views are inserted in the order in which tßßhey will be displayed; i.e, these are index
         // mapped.ßßßßßßßß
 
-        Views.add(PantryView);
-        Views.add(HomeView);
-        Views.add(ShoppingListView);
-        InnerLay.addView(PantryView);
-        InnerLay.addView(HomeView);
-        InnerLay.addView(ShoppingListView);
+        Views.add( PantryView );
+        Views.add( HomeView );
+        Views.add( ShoppingListView );
+        InnerLay.addView( PantryView );
+        InnerLay.addView( HomeView );
+        InnerLay.addView( ShoppingListView );
 
         NextView.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -74,16 +75,16 @@ public class btViewContainer extends Activity {
             }
         } );
 
-        PreviousView.setOnClickListener(new View.OnClickListener() {
+        PreviousView.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View CallingView) {
-                new Handler().postDelayed(new Runnable() {
+            public void onClick( View CallingView ) {
+                new Handler().postDelayed( new Runnable() {
                     @Override
                     public void run() {
-                        HorizontalScrollViewRoot.smoothScrollTo(((int) HorizontalScrollViewRoot.getScaleX() - ViewWidth),
-                                (int) HorizontalScrollViewRoot.getScaleY());
+                        HorizontalScrollViewRoot.smoothScrollTo( ( (int)HorizontalScrollViewRoot.getScaleX() - ViewWidth ),
+                                (int)HorizontalScrollViewRoot.getScaleY() );
                     }
-                }, 100);
+                }, 100 );
 
             }
         } );
@@ -127,7 +128,7 @@ public class btViewContainer extends Activity {
     class InternalGestureDetector extends SimpleOnGestureListener {
         @Override
         public boolean onFling( MotionEvent MotionEvent1, MotionEvent MotionEvent2, float VelocityX, float VelocityY ) {
-            if( MotionEvent1.getX () < MotionEvent2.getX() ) {
+            if( MotionEvent1.getX() < MotionEvent2.getX() ) {
                 CurrentPosition = SlideToView( "Left" );
             } else {
                 CurrentPosition = SlideToView( "Right" );
@@ -135,10 +136,15 @@ public class btViewContainer extends Activity {
 
             HorizontalScrollViewRoot.smoothScrollTo( Views.get( CurrentPosition ).getLeft(), 0 );
 
+            switch( CurrentPosition ) {
+                case 0: {
+                    btView_Pantry.GetBuilt().Build();
+                }
+            }
+
             return true;
         }
     }
-
 
 
     private HorizontalScrollView HorizontalScrollViewRoot;
