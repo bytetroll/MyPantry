@@ -10,6 +10,8 @@ import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+
+import blueteam.mypantry.ui.viewcontainer.btView_Pantry;
 import blueteam.mypanty.R;
 
 import java.util.ArrayList;
@@ -23,9 +25,10 @@ public class btViewContainer extends Activity {
 
         // Bind container reference.
         HorizontalScrollViewRoot = (HorizontalScrollView)findViewById( R.id.HorizontalScrollViewRoot );
+        InnerLay = (LinearLayout)findViewById(R.id.innerLay);
 
         // Bind our previous and next views.
-        PreviousView = (LinearLayout)getLayoutInflater().inflate( R.layout.btui_view_pantry, null ); //(LinearLayout)findViewById( R.id.LinearLayoutPantry );
+        PreviousView = (LinearLayout)getLayoutInflater().inflate(R.layout.btui_view_pantry, null); //(LinearLayout)findViewById( R.id.LinearLayoutPantry );
         NextView = (LinearLayout)getLayoutInflater().inflate( R.layout.btui_view_shopping_list, null );//(LinearLayout)findViewById( R.id.LinearLayoutShoppingList );
 
         GestureWatcher = new GestureDetector( new InternalGestureDetector() );
@@ -37,7 +40,7 @@ public class btViewContainer extends Activity {
         // Setup our view's to dynamically size to the current size of the local display.
         Display LocalDisplay = getWindowManager().getDefaultDisplay();
         DisplayWidth = LocalDisplay.getWidth();
-        ViewWidth = DisplayWidth / 3;
+        ViewWidth = DisplayWidth;
 
         Views = new ArrayList< LinearLayout >();
 
@@ -49,9 +52,13 @@ public class btViewContainer extends Activity {
 
         // Views are inserted in the order in which tßßhey will be displayed; i.e, these are index
         // mapped.ßßßßßßßß
-        Views.add( PantryView );
-        Views.add( HomeView );
-        Views.add( ShoppingListView );
+
+        Views.add(PantryView);
+        Views.add(HomeView);
+        Views.add(ShoppingListView);
+        InnerLay.addView(PantryView);
+        InnerLay.addView(HomeView);
+        InnerLay.addView(ShoppingListView);
 
         NextView.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -67,16 +74,16 @@ public class btViewContainer extends Activity {
             }
         } );
 
-        PreviousView.setOnClickListener( new View.OnClickListener() {
+        PreviousView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick( View CallingView ) {
-                new Handler().postDelayed( new Runnable() {
+            public void onClick(View CallingView) {
+                new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        HorizontalScrollViewRoot.smoothScrollTo( ( (int)HorizontalScrollViewRoot.getScaleX() - ViewWidth ),
-                                (int)HorizontalScrollViewRoot.getScaleY() );
+                        HorizontalScrollViewRoot.smoothScrollTo(((int) HorizontalScrollViewRoot.getScaleX() - ViewWidth),
+                                (int) HorizontalScrollViewRoot.getScaleY());
                     }
-                }, 100 );
+                }, 100);
 
             }
         } );
@@ -135,6 +142,7 @@ public class btViewContainer extends Activity {
 
 
     private HorizontalScrollView HorizontalScrollViewRoot;
+    private LinearLayout InnerLay;
     private GestureDetector GestureWatcher;
 
     private ArrayList< LinearLayout > Views;

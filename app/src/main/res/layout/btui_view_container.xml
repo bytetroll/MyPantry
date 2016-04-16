@@ -10,8 +10,18 @@
     tools:context="blueteam.mypantry.ui.btViewContainer">
 
     <HorizontalScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/HorizontalScrollViewRoot"
-            android:layout_centerHorizontal="true" android:layout_alignParentTop="true"/>
+        android:id="@+id/HorizontalScrollViewRoot"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:id="@+id/innerLay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            </LinearLayout>
+    </HorizontalScrollView>
 </RelativeLayout>
