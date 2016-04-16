@@ -6,4 +6,10 @@
                     tools:context="blueteam.mypantry.viewcontainer.btView_ShoppingList"
               android:id="@+id/LinearLayoutShoppingList">
 
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Shopping List"
+            android:id="@+id/textView3" android:layout_gravity="center_horizontal"/>
 </LinearLayout>

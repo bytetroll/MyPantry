@@ -19,7 +19,10 @@ public class btViewContainer extends Activity {
     @Override
     protected void onCreate( Bundle SavedInstanceState ) {
         super.onCreate( SavedInstanceState );
-        setContentView( R.layout.btui_view_home );
+        setContentView( R.layout.btui_view_container );
+
+        // Bind container reference.
+        HorizontalScrollViewRoot = (HorizontalScrollView)findViewById( R.id.HorizontalScrollViewRoot );
 
         // Bind our previous and next views.
         PreviousView = (LinearLayout)getLayoutInflater().inflate( R.layout.btui_view_pantry, null ); //(LinearLayout)findViewById( R.id.LinearLayoutPantry );
