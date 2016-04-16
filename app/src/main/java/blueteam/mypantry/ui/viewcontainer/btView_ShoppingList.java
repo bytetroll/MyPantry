@@ -1,4 +1,4 @@
-package blueteam.mypantry.ui;
+package blueteam.mypantry.ui.viewcontainer;
 
 import android.app.Activity;
 

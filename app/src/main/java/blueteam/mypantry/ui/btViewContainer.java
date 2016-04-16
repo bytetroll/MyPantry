@@ -22,14 +22,14 @@ public class btViewContainer extends Activity {
         setContentView( R.layout.btui_view_home );
 
         // Bind our previous and next views.
-        PreviousView = (LinearLayout)findViewById( R.id.LinearLayoutPantry );
-        NextView = (LinearLayout)findViewById( R.id.LinearLayoutShoppingList );
+        PreviousView = (LinearLayout)getLayoutInflater().inflate( R.layout.btui_view_pantry, null ); //(LinearLayout)findViewById( R.id.LinearLayoutPantry );
+        NextView = (LinearLayout)getLayoutInflater().inflate( R.layout.btui_view_shopping_list, null );//(LinearLayout)findViewById( R.id.LinearLayoutShoppingList );
 
         GestureWatcher = new GestureDetector( new InternalGestureDetector() );
 
-        HomeView = (LinearLayout)findViewById( R.id.LinearLayoutHome );
-        ShoppingListView = (LinearLayout)findViewById( R.id.LinearLayoutShoppingList );
-        PantryView = (LinearLayout)findViewById( R.id.LinearLayoutPantry );
+        HomeView = (LinearLayout)getLayoutInflater().inflate( R.layout.btui_view_home, null );//(LinearLayout)findViewById( R.id.LinearLayoutHome );
+        ShoppingListView = (LinearLayout)getLayoutInflater().inflate( R.layout.btui_view_shopping_list, null );//(LinearLayout)findViewById( R.id.LinearLayoutShoppingList );
+        PantryView = (LinearLayout)getLayoutInflater().inflate( R.layout.btui_view_pantry, null );//(LinearLayout)findViewById( R.id.LinearLayoutPantry );
 
         // Setup our view's to dynamically size to the current size of the local display.
         Display LocalDisplay = getWindowManager().getDefaultDisplay();
