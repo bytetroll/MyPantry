@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="blueteam.mypantry.ui.views.btUI_ProductDetails">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Product"
+            android:id="@+id/textview_project_label"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:enabled="true" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edittext_product_name"
+            android:layout_below="@+id/textview_project_label"
+            android:layout_centerHorizontal="true"
+            android:enabled="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Quantity"
+            android:id="@+id/textview_quantity_label"
+            android:layout_marginTop="37dp"
+            android:layout_below="@+id/edittext_product_name"
+            android:layout_centerHorizontal="true"
+            android:enabled="true" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edittext_quantity"
+            android:layout_below="@+id/textview_quantity_label"
+            android:layout_alignLeft="@+id/edittext_product_name"
+            android:layout_alignStart="@+id/edittext_product_name"
+            android:inputType="numberSigned"
+            android:enabled="true" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perishable"
+            android:id="@+id/checkbox_perishable"
+            android:layout_marginTop="39dp"
+            android:layout_below="@+id/edittext_quantity"
+            android:layout_alignRight="@+id/textview_quantity_label"
+            android:layout_alignEnd="@+id/textview_quantity_label"
+            android:enabled="true" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="450dp"
+            android:id="@+id/linearlayout_nav">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:id="@+id/button_add_or_save"
+                android:enabled="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remove"
+                android:id="@+id/button_remove"
+                android:enabled="true" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/edittext_perish_date"
+            android:layout_below="@+id/checkbox_perishable"
+            android:layout_centerHorizontal="true"
+            android:clickable="false"
+            android:enabled="true" />
+
+    </RelativeLayout>
+
+</LinearLayout>
