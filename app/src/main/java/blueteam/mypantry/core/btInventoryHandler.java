@@ -32,7 +32,7 @@ public class btInventoryHandler {
             PantryInventory = new ArrayList<>();
         }
 
-        ShoppingListInventory = LocalDB.QueryShoppingList();
+        //ShoppingListInventory = LocalDB.QueryShoppingList();
         if( ShoppingListInventory == null ) {
             ShoppingListInventory = new ArrayList<>();
         }
@@ -49,11 +49,11 @@ public class btInventoryHandler {
 
         switch( Location ) {
             case Pantry:
-                btLocalDatabase.SavePantryProduct( Product );
+                LocalDB.SaveProductInPantry( Product );
                 PantryInventory.add( Product );
                 break;
             case ShoppingList:
-                btLocalDatabase.SaveShoppingListProduct( Product );
+                LocalDB.SaveProductInShoppingList( Product );
                 PantryInventory.add( Product );
                 break;
         }
@@ -62,7 +62,7 @@ public class btInventoryHandler {
     private static void RemoveProductFromLocation( String ProductName, ProductOperationDestination Location ) {
         switch( Location ) {
             case Pantry:
-                btLocalDatabase.RemoveProductFromPantry( ProductName );
+                LocalDB.DeleteProductFromPantry( ProductName );
 
                 for( int Index = 0; Index < PantryInventory.size(); Index++ ) {
                     if( PantryInventory.get( Index ).Name.equals( ProductName ) ) {
@@ -73,7 +73,7 @@ public class btInventoryHandler {
 
                 break;
             case ShoppingList:
-                btLocalDatabase.RemoveProductFromShoppingList( ProductName );
+                LocalDB.DeleteProductFromShoppingList( ProductName );
 
                 for( int Index = 0; Index < ShoppingListInventory.size(); Index++ ) {
                     if( ShoppingListInventory.get( Index ).Name.equals( ProductName ) ) {

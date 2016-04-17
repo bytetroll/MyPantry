@@ -10,6 +10,8 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
+import blueteam.mypantry.core.btProduct;
+
 public class btLocalDatabase extends SQLiteOpenHelper {
     public static final String DatabaseName = "MyPantry.db";
     public static final int DatabaseVersion = 1;
@@ -46,5 +48,70 @@ public class btLocalDatabase extends SQLiteOpenHelper {
         Database.execSQL( "DROP TABLE IF EXISTS ShoppingList" );
     }
 
+    public void SaveProductInPantry( btProduct Product ) {
+        final SQLiteDatabase Database = this.getWritableDatabase();
 
+        final ContentValues Values = new ContentValues();
+        Values.put( ProductName, Product.Name );
+        Values.put( ProductCategory, Product.Category );
+        Values.put( ProductQuantity, Product.Quantity );
+        Values.put( ProductPrice, Product.Price );
+        Values.put( ProductPurchaseDate, Product.PurchaseDate );
+        Values.put( ProductPerishable, Product.Perishable );
+        Values.put( ProductPerishDate, Product.PerishDate );
+        Values.put( PendingSync, "true" );
+
+        Database.insert( PantryTableName, null, Values );
+    }
+
+    public void SaveProductInShoppingList( btProduct Product ) {
+        final SQLiteDatabase Database = this.getWritableDatabase();
+
+        final ContentValues Values = new ContentValues();
+        Values.put( ProductName, Product.Name );
+        Values.put( ProductCategory, Product.Category );
+        Values.put( ProductQuantity, Product.Quantity );
+        Values.put( ProductPrice, Product.Price );
+        Values.put( ProductPurchaseDate, Product.PurchaseDate );
+        Values.put( ProductPerishable, Product.Perishable );
+        Values.put( ProductPerishDate, Product.PerishDate );
+        Values.put( PendingSync, "true" );
+
+        Database.insert( ShoppingListTableName, null, Values );
+    }
+
+    public void DeleteProductFromPantry( String ProductName ) {
+        final SQLiteDatabase Database = this.getWritableDatabase();
+        Database.delete( PantryTableName, "ProductName = ? ", new String[] { ProductName } );
+    }
+
+    public void DeleteProductFromShoppingList( String ProductName ) {
+        final SQLiteDatabase Database = this.getWritableDatabase();
+        Database.delete( ShoppingListTableName, "ProductName = ? ", new String[] { ProductName } );
+    }
+
+    public ArrayList< btProduct > QueryPantry() {
+        final SQLiteDatabase Database = this.getReadableDatabase();
+        final ArrayList< btProduct > Products = new ArrayList< btProduct>();
+        final Cursor Cur = Database.rawQuery( "SELECT * FROM PANTRY", null );
+
+        Cur.moveToFirst();
+        while( Cur.isAfterLast() == false ) {
+            btProduct Product = new btProduct();
+            Product.Name = Cur.getString( Cur.getColumnIndex( ProductName ) );
+            Product.Category = Cur.getString( Cur.getColumnIndex( ProductCategory ) );
+            Product.Quantity = Cur.getInt( Cur.getColumnIndex( ProductQuantity ) );
+            Product.Price = Cur.getFloat( Cur.getColumnIndex( ProductPrice ) );
+            Product.PurchaseDate = Cur.getString( Cur.getColumnIndex( ProductPurchaseDate ) );
+            Product.Perishable = Boolean.parseBoolean( Cur.getString( Cur.getColumnIndex( ProductPerishable ) ) );
+            Product.PerishDate = Cur.getString( Cur.getColumnIndex( ProductPerishDate ) );
+            Product.PendingSync = Boolean.parseBoolean( Cur.getString( Cur.getColumnIndex( PendingSync ) ) );
+
+            Products.add( Product );
+
+            Cur.moveToNext();
+        }
+
+        return Products;
+    }
 }
