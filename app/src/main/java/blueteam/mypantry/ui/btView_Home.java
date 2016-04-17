@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import blueteam.mypantry.async.btConnectionWatcher;
 import blueteam.mypantry.async.btLocalDatabaseSyncer;
+import blueteam.mypantry.core.btInventoryHandler;
+import blueteam.mypantry.db.btLocalDatabase;
 import blueteam.mypantry.runtime.btLocalScopeAccessor;
 import blueteam.mypantry.ui.helpers.btActivityHelpers;
 import blueteam.mypantry.ui.helpers.btActivityPersistence;
@@ -58,6 +60,8 @@ public class btView_Home extends Activity {
         // Start async threads.
         new btConnectionWatcher().start();
         new btLocalDatabaseSyncer().start();
+
+        btInventoryHandler.Startup( this );
     }
 
     private void OnClick_AddButton( View CallingView ) {

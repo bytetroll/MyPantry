@@ -1,5 +1,6 @@
 package blueteam.mypantry.core;
 
+import android.content.Context;
 import blueteam.mypantry.db.btLocalDatabase;
 
 import java.util.ArrayList;
@@ -21,6 +22,20 @@ public class btInventoryHandler {
 
     public static void RemoveProductFromShoppingList( String ProductName ) {
         RemoveProductFromLocation( ProductName, ProductOperationDestination.ShoppingList );
+    }
+
+    public static void Startup( Context Ctx ) {
+        LocalDB = new btLocalDatabase( Ctx );
+
+        PantryInventory = LocalDB.QueryPantry();
+        if( PantryInventory == null ) {
+            PantryInventory = new ArrayList<>();
+        }
+
+        ShoppingListInventory = LocalDB.QueryShoppingList();
+        if( ShoppingListInventory == null ) {
+            ShoppingListInventory = new ArrayList<>();
+        }
     }
 
     // Private API
@@ -75,15 +90,5 @@ public class btInventoryHandler {
     private static List< btProduct > PantryInventory = null;
     private static List< btProduct > ShoppingListInventory = null;
 
-    static {
-        PantryInventory = btLocalDatabase.QueryPantry();
-        if( PantryInventory == null ) {
-            PantryInventory = new ArrayList<>();
-        }
-
-        ShoppingListInventory = btLocalDatabase.QueryShoppingList();
-        if( ShoppingListInventory == null ) {
-            ShoppingListInventory = new ArrayList<>();
-        }
-    }
+    private static btLocalDatabase LocalDB = null;
 }
