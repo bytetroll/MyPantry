@@ -32,7 +32,7 @@ public class btInventoryHandler {
             PantryInventory = new ArrayList<>();
         }
 
-        //ShoppingListInventory = LocalDB.QueryShoppingList();
+        ShoppingListInventory = LocalDB.QueryShoppingList();
         if( ShoppingListInventory == null ) {
             ShoppingListInventory = new ArrayList<>();
         }
@@ -84,6 +84,14 @@ public class btInventoryHandler {
 
                 break;
         }
+    }
+
+    public static List< btProduct > PantryContents() {
+        return PantryInventory;
+    }
+
+    public static List< btProduct > ShoppingListContents() {
+        return ShoppingListInventory;
     }
 
     // Allocating the lists ensures that we have valid lists, even if no local data is stored.

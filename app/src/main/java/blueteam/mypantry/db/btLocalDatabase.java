@@ -93,7 +93,32 @@ public class btLocalDatabase extends SQLiteOpenHelper {
     public ArrayList< btProduct > QueryPantry() {
         final SQLiteDatabase Database = this.getReadableDatabase();
         final ArrayList< btProduct > Products = new ArrayList< btProduct>();
-        final Cursor Cur = Database.rawQuery( "SELECT * FROM PANTRY", null );
+        final Cursor Cur = Database.rawQuery( "SELECT * FROM Pantry", null );
+
+        Cur.moveToFirst();
+        while( Cur.isAfterLast() == false ) {
+            btProduct Product = new btProduct();
+            Product.Name = Cur.getString( Cur.getColumnIndex( ProductName ) );
+            Product.Category = Cur.getString( Cur.getColumnIndex( ProductCategory ) );
+            Product.Quantity = Cur.getInt( Cur.getColumnIndex( ProductQuantity ) );
+            Product.Price = Cur.getFloat( Cur.getColumnIndex( ProductPrice ) );
+            Product.PurchaseDate = Cur.getString( Cur.getColumnIndex( ProductPurchaseDate ) );
+            Product.Perishable = Boolean.parseBoolean( Cur.getString( Cur.getColumnIndex( ProductPerishable ) ) );
+            Product.PerishDate = Cur.getString( Cur.getColumnIndex( ProductPerishDate ) );
+            Product.PendingSync = Boolean.parseBoolean( Cur.getString( Cur.getColumnIndex( PendingSync ) ) );
+
+            Products.add( Product );
+
+            Cur.moveToNext();
+        }
+
+        return Products;
+    }
+
+    public ArrayList< btProduct > QueryShoppingList() {
+        final SQLiteDatabase Database = this.getReadableDatabase();
+        final ArrayList< btProduct > Products = new ArrayList< btProduct>();
+        final Cursor Cur = Database.rawQuery( "SELECT * FROM ShoppingList", null );
 
         Cur.moveToFirst();
         while( Cur.isAfterLast() == false ) {

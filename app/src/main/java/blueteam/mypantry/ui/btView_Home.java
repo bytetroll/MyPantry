@@ -64,6 +64,19 @@ public class btView_Home extends Activity {
         btInventoryHandler.Startup( this );
     }
 
+    @Override
+    public void onActivityResult( int RequestCode, int ResultCode, Intent CallingIntent ) {
+        if( RequestCode == 0 ) {
+            if( ResultCode == RESULT_OK ) {
+                String Contents = CallingIntent.getStringExtra( "SCAN_RESULT" );
+                String Format = CallingIntent.getStringExtra( "SCAN_RESULT_FORMAT" );
+                // Handle successful scan
+            } else if( ResultCode == RESULT_CANCELED ) {
+                // Handle cancel
+            }
+        }
+    }
+
     private void OnClick_AddButton( View CallingView ) {
         final btLocalScopeAccessor Accessor = new btLocalScopeAccessor();
         Accessor.Bind( "ThisView", this );
@@ -82,18 +95,9 @@ public class btView_Home extends Activity {
                 .setNegativeButton( "Scan", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick( DialogInterface Dialog, int Which ) {
-                        Intent NewIntent = new Intent( "com.google.zxing.client.android.SCAN" );
-                        NewIntent.putExtra( "SCAN_MODE", "QR_CODE_MODE" );
-
-                        startActivityForResult( NewIntent, 0 );
-                        IntentIntegrator Integrator = new IntentIntegrator( (Activity)Accessor.Access( "ThisView" ).InternalObject );
-
-                        Integrator.setDesiredBarcodeFormats( IntentIntegrator.ONE_D_CODE_TYPES );
-                        Integrator.setPrompt( "Scan a UPC" );
-                        Integrator.setCameraId( 0 );  // Use a specific camera of the device
-                        Integrator.setBeepEnabled( false );
-
-                        Integrator.initiateScan();
+                        Intent ScanIntent = new Intent( "com.google.zxing.client.android.SCAN" );
+                        ScanIntent.putExtra( "SCAN_MODE", "QR_CODE_MODE" );
+                        startActivityForResult( ScanIntent, 0 );
                     }
                 } )
                 .setIcon( android.R.drawable.ic_dialog_alert )

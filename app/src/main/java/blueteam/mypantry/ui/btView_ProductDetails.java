@@ -8,6 +8,7 @@ import android.widget.*;
 
 import blueteam.mypantry.core.btInventoryHandler;
 import blueteam.mypantry.core.btProduct;
+import blueteam.mypantry.ui.helpers.btActivityHelpers;
 import blueteam.mypanty.R;
 
 public class btView_ProductDetails extends Activity {
@@ -59,10 +60,20 @@ public class btView_ProductDetails extends Activity {
                 btInventoryHandler.AddProductToPantry( Product );
             }
         } );
+
+        TextViewDetailsToHome = (TextView)findViewById( R.id.TextViewDetailsToHome );
+        TextViewDetailsToHome.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View CallingView ) {
+                btActivityHelpers.SwitchView( CallingView.getContext(), btView_Home.class );
+            }
+        } );
     }
 
     private Button ButtonAdd = null;
     private Button ButtonDelete = null;
+
+    private TextView TextViewDetailsToHome = null;
 
     private EditText EditTextProductPerishDate = null;
     private EditText EditTextProductQuantity = null;

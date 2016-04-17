@@ -9,6 +9,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import android.widget.TextView;
+
+import blueteam.mypantry.core.btInventoryHandler;
+import blueteam.mypantry.core.btProduct;
 import blueteam.mypantry.ui.adapters.btListViewAdapterData;
 import blueteam.mypanty.R;
 import blueteam.mypantry.ui.adapters.btListViewAdapter;
@@ -33,9 +36,14 @@ public class btView_Pantry extends Activity {
         Adapter = new btListViewAdapter( this, PantryContents );
         view.setAdapter( Adapter );
 
-        for( int Index = 0; Index < 50; Index++ ) {
-            btListViewAdapterData Data = new btListViewAdapterData( ( "Object" + Index ), ( new String( "[" + Index + "]" ) ) );
-            PantryContents.add( Data );
+        //for( int Index = 0; Index < 50; Index++ ) {
+        //    btListViewAdapterData Data = new btListViewAdapterData( ( "Object" + Index ), ( new String( "[" + Index + "]" ) ) );
+        //    PantryContents.add( Data );
+        //}
+
+        for( btProduct Product : btInventoryHandler.PantryContents() ) {
+            btListViewAdapterData ProductData = new btListViewAdapterData( Product.Name, String.valueOf( Product.Quantity ) );
+            PantryContents.add( ProductData );
         }
 
         // Force dynamic reload.
