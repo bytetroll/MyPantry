@@ -15,17 +15,17 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Product"
-            android:id="@+id/textview_project_label"
+            android:id="@+id/TextViewProductLabel"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="20dp"
             android:enabled="true" />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/edittext_product_name"
-            android:layout_below="@+id/textview_project_label"
+            android:id="@+id/EditTextProductName"
+            android:layout_below="@+id/TextViewProductLabel"
             android:layout_centerHorizontal="true"
             android:enabled="true" />
 
@@ -34,19 +34,19 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Quantity"
-            android:id="@+id/textview_quantity_label"
+            android:id="@+id/TextViewProductQuantityLabel"
             android:layout_marginTop="37dp"
-            android:layout_below="@+id/edittext_product_name"
+            android:layout_below="@+id/EditTextProductName"
             android:layout_centerHorizontal="true"
             android:enabled="true" />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/edittext_quantity"
-            android:layout_below="@+id/textview_quantity_label"
-            android:layout_alignLeft="@+id/edittext_product_name"
-            android:layout_alignStart="@+id/edittext_product_name"
+            android:id="@+id/EditTextProductQuantity"
+            android:layout_below="@+id/TextViewProductQuantityLabel"
+            android:layout_alignLeft="@+id/EditTextProductName"
+            android:layout_alignStart="@+id/EditTextProductName"
             android:inputType="numberSigned"
             android:enabled="true" />
 
@@ -54,36 +54,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Perishable"
-            android:id="@+id/checkbox_perishable"
+            android:id="@+id/CheckBoxProductPerishable"
             android:layout_marginTop="39dp"
-            android:layout_below="@+id/edittext_quantity"
-            android:layout_alignRight="@+id/textview_quantity_label"
-            android:layout_alignEnd="@+id/textview_quantity_label"
+            android:layout_below="@+id/EditTextProductQuantity"
+            android:layout_alignRight="@+id/TextViewProductQuantityLabel"
+            android:layout_alignEnd="@+id/TextViewProductQuantityLabel"
             android:enabled="true" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="450dp"
-            android:id="@+id/linearlayout_nav">
+            android:id="@+id/linearlayout_nav" android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
                 android:id="@+id/button_add_or_save"
-                android:enabled="true" />
+                android:enabled="true" android:layout_marginLeft="100dp"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Remove"
-                android:id="@+id/button_remove"
+                android:id="@+id/ButtonDelete"
                 android:enabled="true" />
         </LinearLayout>
 
@@ -92,11 +89,20 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             android:ems="10"
-            android:id="@+id/edittext_perish_date"
-            android:layout_below="@+id/checkbox_perishable"
+            android:id="@+id/EditTextProductPerishDate"
+            android:layout_below="@+id/CheckBoxProductPerishable"
             android:layout_centerHorizontal="true"
             android:clickable="false"
             android:enabled="true" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceLarge" android:text="Purchase Date"
+                  android:id="@+id/TextViewProductPurchaseDateLabel"
+                  android:enabled="true" android:layout_below="@+id/EditTextProductPerishDate"
+                  android:layout_centerHorizontal="true" android:layout_marginTop="37dp"/>
+        <EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="date"
+                  android:ems="10" android:id="@+id/EditTextProductPurchaseDate"
+                  android:clickable="false" android:enabled="true"
+                  android:layout_below="@+id/TextViewProductPurchaseDateLabel" android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 
