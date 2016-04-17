@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 import blueteam.mypanty.R;
 
-/**
- * Created by nathan on 4/16/16.
- */
 public class btView_ShoppingList extends Activity {
     @Override
     protected void onCreate( Bundle SavedInstanceState ) {

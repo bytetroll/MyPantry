@@ -67,21 +67,17 @@
             android:layout_height="50dp"
             android:id="@+id/linearlayout_nav" android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true">
+            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+            android:weightSum="1">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
                 android:id="@+id/ButtonAdd"
-                android:enabled="true" android:layout_marginLeft="100dp"/>
+                android:enabled="true" android:layout_marginLeft="100dp"
+                android:layout_weight="0.54" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Remove"
-                android:id="@+id/ButtonDelete"
-                android:enabled="true" />
         </LinearLayout>
 
         <EditText

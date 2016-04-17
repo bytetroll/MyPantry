@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import blueteam.mypantry.core.btInventoryHandler;
 import blueteam.mypantry.core.btProduct;
 import blueteam.mypantry.ui.adapters.btListViewAdapterData;
+import blueteam.mypantry.ui.helpers.btActivityHelpers;
+import blueteam.mypantry.ui.helpers.btActivityPersistence;
 import blueteam.mypanty.R;
 import blueteam.mypantry.ui.adapters.btListViewAdapter;
 
@@ -31,15 +34,9 @@ public class btView_Pantry extends Activity {
             }
         } );
 
-
-        ListView view = (ListView)findViewById( R.id.PantryList );
+        ListViewPantryContents = (ListView)findViewById( R.id.PantryList );
         Adapter = new btListViewAdapter( this, PantryContents );
-        view.setAdapter( Adapter );
-
-        //for( int Index = 0; Index < 50; Index++ ) {
-        //    btListViewAdapterData Data = new btListViewAdapterData( ( "Object" + Index ), ( new String( "[" + Index + "]" ) ) );
-        //    PantryContents.add( Data );
-        //}
+        ListViewPantryContents.setAdapter( Adapter );
 
         for( btProduct Product : btInventoryHandler.PantryContents() ) {
             btListViewAdapterData ProductData = new btListViewAdapterData( Product.Name, String.valueOf( Product.Quantity ) );
@@ -48,11 +45,33 @@ public class btView_Pantry extends Activity {
 
         // Force dynamic reload.
         Adapter.notifyDataSetChanged();
+
+        ListViewPantryContents.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick( AdapterView< ? > Parent, View CallingView, int Position, long ID ) {
+                btActivityPersistence.AddKeyValuePair( "SelectedPantryItem", Position );
+                btActivityHelpers.SwitchView( CallingView.getContext(), btView_ProductDetails.class );
+            }
+        } );
+
+        ListViewPantryContents.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick( AdapterView<?> Parent, View CallingView, int Position, long ID ) {
+                final String SelectedProductName = (String)ListViewPantryContents.getItemAtPosition( Position );
+                btInventoryHandler.RemoveProductFromPantry( SelectedProductName );
+
+                Adapter.Remove( Position );
+                Adapter.notifyDataSetChanged();
+
+                return false;
+            }
+        } );
     }
 
     private ArrayList< btListViewAdapterData > PantryContents = new ArrayList<>();
     private btListViewAdapter Adapter;
 
-    private TextView TextViewToHome;
+    private TextView TextViewToHome = null;
+    private ListView ListViewPantryContents = null;
 
 }

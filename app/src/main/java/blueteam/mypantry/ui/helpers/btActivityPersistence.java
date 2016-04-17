@@ -28,6 +28,10 @@ public class btActivityPersistence {
         Data.remove( Key );
     }
 
+    public static boolean KeyExists( String Key ) {
+        return Data.containsKey( Key );
+    }
+
     private static void UpdateValueFromKey( String Key, Object Value ) {
         for( int Index = 0; Index < Data.size(); Index++ ) {
             if( Data.get( Key ).equals( Value ) ) {
@@ -39,5 +43,5 @@ public class btActivityPersistence {
         }
     }
 
-    public static Map< String, Object > Data = new HashMap<>();
+    private static Map< String, Object > Data = new HashMap<>();
 }

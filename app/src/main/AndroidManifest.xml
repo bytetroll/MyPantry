@@ -12,7 +12,7 @@
                 android:name="blueteam.mypantry.ui.btView_Home"
                 android:label="MyPantry"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+                android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,21 +25,21 @@
                 android:name="blueteam.mypantry.ui.btView_ShoppingList"
                 android:label="AMyPantry"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+                android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
 
         <activity
                 android:name="blueteam.mypantry.ui.btView_Pantry"
                 android:label="MyPantry"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+                android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
 
         <activity
                 android:name="blueteam.mypantry.ui.btView_ProductDetails"
                 android:label="MyPantry"
                 android:screenOrientation="portrait"
-                android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+                android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
 
     </application>

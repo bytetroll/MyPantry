@@ -21,7 +21,7 @@ import java.net.URLConnection;
 // HttpBackend needs to extend from Android's Activity for getSystemService().
 @SuppressWarnings( "deprecation" )
 public class btHttpBackend extends Activity {
-    private static final String GatewayAddress = "http://cdn.executesoftware.com/csc3330_gameway.php";
+    private static final String GatewayAddress = "http://cdn.executesoftware.com/csc3330_gateway.php";
     private static final String ServerAddress = "http://cdn.executesoftware.com";
     private static final int ServerPort = 443;
 

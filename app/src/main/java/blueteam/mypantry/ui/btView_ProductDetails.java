@@ -8,7 +8,9 @@ import android.widget.*;
 
 import blueteam.mypantry.core.btInventoryHandler;
 import blueteam.mypantry.core.btProduct;
+import blueteam.mypantry.runtime.btRuntimeCast;
 import blueteam.mypantry.ui.helpers.btActivityHelpers;
+import blueteam.mypantry.ui.helpers.btActivityPersistence;
 import blueteam.mypanty.R;
 
 public class btView_ProductDetails extends Activity {
@@ -18,7 +20,6 @@ public class btView_ProductDetails extends Activity {
         setContentView( R.layout.btui_view_product_details );
 
         ButtonAdd = (Button)findViewById( R.id.ButtonAdd );
-        ButtonDelete = (Button)findViewById( R.id.ButtonDelete );
 
         EditTextProductName = (EditText)findViewById( R.id.EditTextProductName );
         EditTextProductQuantity = (EditText)findViewById( R.id.EditTextProductQuantity );
@@ -68,10 +69,25 @@ public class btView_ProductDetails extends Activity {
                 btActivityHelpers.SwitchView( CallingView.getContext(), btView_Home.class );
             }
         } );
+
+        if( btActivityPersistence.KeyExists( "SelectedPantryItem" ) ) {
+            int SelectedIndex = (int)btActivityPersistence.ValueFromKey( "SelectedPantryItem" );
+
+            final btProduct SelectedProduct = btInventoryHandler.PantryContents().get( SelectedIndex );
+
+            ButtonAdd.setText( "Update" );
+
+            EditTextProductName.setText( SelectedProduct.Name );
+            EditTextProductQuantity.setText( SelectedProduct.Quantity );
+            EditTextProductCategory.setText( SelectedProduct.Category );
+            EditTextProductPerishDate.setText( SelectedProduct.PerishDate );
+            EditTextProductPrice.setText( String.valueOf( SelectedProduct.Price ) );
+
+            CheckBoxPerishable.setChecked( SelectedProduct.Perishable );
+        }
     }
 
     private Button ButtonAdd = null;
-    private Button ButtonDelete = null;
 
     private TextView TextViewDetailsToHome = null;
 

@@ -24,6 +24,10 @@ public class btListViewAdapter extends BaseAdapter {
         Inflator = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    public void Remove( int ObjectIndex ) {
+        Data.remove( ObjectIndex );
+    }
+
     @Override
     public int getCount() {
         return Data.size();
