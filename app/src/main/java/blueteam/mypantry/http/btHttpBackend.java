@@ -2,6 +2,7 @@ package blueteam.mypantry.http;
 
 import android.app.Activity;
 
+import android.os.Bundle;
 import blueteam.mypantry.core.btProduct;
 import blueteam.mypantry.runtime.btRuntime;
 import org.apache.http.HttpResponse;
@@ -18,12 +19,13 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-// HttpBackend needs to extend from Android's Activity for getSystemService().
+
 @SuppressWarnings( "deprecation" )
-public class btHttpBackend extends Activity {
+public class btHttpBackend {
     private static final String GatewayAddress = "http://cdn.executesoftware.com/csc3330_gateway.php";
     private static final String ServerAddress = "http://cdn.executesoftware.com";
     private static final int ServerPort = 443;
+
 
     public static boolean HostReady() {
         try {

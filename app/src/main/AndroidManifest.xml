@@ -8,6 +8,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <uses-permission android:name="android.permission.INTERNET" />
+
         <activity
                 android:name="blueteam.mypantry.ui.btView_Home"
                 android:label="MyPantry"

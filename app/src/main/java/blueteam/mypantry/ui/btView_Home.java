@@ -11,14 +11,12 @@ import android.widget.Button;
 
 import android.widget.TextView;
 import blueteam.mypantry.async.btConnectionWatcher;
-import blueteam.mypantry.async.btLocalDatabaseSyncer;
+import blueteam.mypantry.async.btRemoteServerSync;
 import blueteam.mypantry.core.btInventoryHandler;
-import blueteam.mypantry.db.btLocalDatabase;
 import blueteam.mypantry.runtime.btLocalScopeAccessor;
 import blueteam.mypantry.ui.helpers.btActivityHelpers;
 import blueteam.mypantry.ui.helpers.btActivityPersistence;
 import blueteam.mypantry.ui.shared.btAddMethod;
-import com.google.zxing.integration.android.IntentIntegrator;
 
 
 import blueteam.mypanty.R;
@@ -59,7 +57,7 @@ public class btView_Home extends Activity {
 
         // Start async threads.
         new btConnectionWatcher().start();
-        new btLocalDatabaseSyncer().start();
+        new btRemoteServerSync().start();
 
         btInventoryHandler.Startup( this );
     }

@@ -1,12 +1,15 @@
 package blueteam.mypantry.async;
 
+import blueteam.mypantry.core.btInventoryHandler;
+import blueteam.mypantry.core.btProduct;
+import blueteam.mypantry.http.btHttpClient;
 import blueteam.mypantry.runtime.btRuntime;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class btLocalDatabaseSyncer extends Thread {
+public class btRemoteServerSync extends Thread {
     private static final int TaskCooldownMS = 5000;
 
     @Override
@@ -21,15 +24,16 @@ public class btLocalDatabaseSyncer extends Thread {
         public void run() {
             synchronized( this ) {
                 if( btConnectionWatcher.ConnectedToServer ) {
-                    ConnectedToServer = true;
-                    btRuntime.LogMessage( "[Async] connection watcher -> connected to server." );
-                } else {
-                    ConnectedToServer = false;
-                    btRuntime.LogMessage( "[Async] connection water -> disconnected from server" );
+                    // Sync Pantry
+                    for( btProduct Product : btInventoryHandler.PantryContents() ) {
+                        btHttpClient.PostToServer( Product );
+                    }
+
+                    for( btProduct Product : btInventoryHandler.ShoppingListContents() ) {
+                        btHttpClient.PostToServer( Product );
+                    }
                 }
             }
         }
     };
-
-    public static volatile boolean ConnectedToServer = false;
 }
