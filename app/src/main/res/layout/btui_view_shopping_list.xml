@@ -12,6 +12,6 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="390dp"
-        android:id="@+id/listView2"
+        android:id="@+id/ListViewShoppingListContents"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

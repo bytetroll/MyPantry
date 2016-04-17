@@ -94,6 +94,24 @@ public class btInventoryHandler {
         return ShoppingListInventory;
     }
 
+    public static void MoveProductToShoppingList( String ProductName, boolean RemoveFromPantry ) {
+        btProduct Product = null;
+
+        for( int Index = 0; Index < PantryInventory.size(); Index++ ) {
+            if( PantryInventory.get( Index ).Name.equals( ProductName ) ) {
+                Product = PantryInventory.get( Index );
+            }
+        }
+
+        assert( Product == null );
+
+        AddProductToShoppingList( Product );
+
+        if( RemoveFromPantry ) {
+            RemoveProductFromPantry( Product.Name );
+        }
+    }
+
     // Allocating the lists ensures that we have valid lists, even if no local data is stored.
     private static List< btProduct > PantryInventory = null;
     private static List< btProduct > ShoppingListInventory = null;
