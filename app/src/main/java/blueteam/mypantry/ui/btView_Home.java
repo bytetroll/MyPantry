@@ -71,9 +71,10 @@ public class btView_Home extends Activity {
                     @Override
                     public void onClick( DialogInterface dialog, int Witch ) {
                         btActivityPersistence.AddKeyValuePair( "AddMethod", btAddMethod.Manual );
-                        btActivityHelpers.SwitchView( (Activity)Accessor.Access( "ThisView " ).InternalObject, btView_ProductDetails.class );
+
+                        btActivityHelpers.SwitchView( (Activity)Accessor.Access( "ThisView" ).InternalObject, btView_ProductDetails.class );
                     }
-                })
+                } )
                 .setNegativeButton( "Scan", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick( DialogInterface Dialog, int Which ) {

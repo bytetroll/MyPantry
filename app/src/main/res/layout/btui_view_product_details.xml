@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="blueteam.mypantry.ui.views.btUI_ProductDetails">
+    tools:context="blueteam.mypantry.ui.btUI_ProductDetails">
 
     <RelativeLayout
         android:layout_width="match_parent"

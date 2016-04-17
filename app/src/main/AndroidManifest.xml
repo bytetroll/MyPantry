@@ -35,6 +35,13 @@
                 android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         </activity>
 
+        <activity
+                android:name="blueteam.mypantry.ui.btView_ProductDetails"
+                android:label="MyPantry"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+        </activity>
+
     </application>
 
 </manifest>

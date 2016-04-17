@@ -2,10 +2,8 @@ package blueteam.mypantry.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -13,9 +11,9 @@ import blueteam.mypanty.R;
 
 public class btView_ProductDetails extends Activity {
     @Override
-    protected void onCreate( Bundle saved_state ) {
-        super.onCreate(saved_state);
-        setContentView(R.layout.ui_product_detail);
+    protected void onCreate( Bundle SavedState ) {
+        super.onCreate( SavedState );
+        setContentView( R.layout.btui_view_product_details );
     }
 
     private Button ButtonAdd = null;
