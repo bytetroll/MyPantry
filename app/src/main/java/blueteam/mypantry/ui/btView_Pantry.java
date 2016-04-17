@@ -85,7 +85,9 @@ public class btView_Pantry extends Activity {
                         .setIcon( android.R.drawable.ic_dialog_alert )
                         .show();
 
-                return false;
+                // Must return true to notify Android that we have consumed the click event,
+                // otherwise, this will raise the normal OnClick event as well.
+                return true;
             }
         } );
     }
