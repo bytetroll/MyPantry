@@ -61,29 +61,9 @@ public class btView_ShoppingList extends Activity {
             @Override
             public boolean onItemLongClick( AdapterView< ? > Parent, View CallingView, int Position, long ID ) {
                 btListViewAdapterData Data = (btListViewAdapterData)ListViewShoppingListContents.getItemAtPosition( Position );
-                final btLocalScopeAccessor Accessor = new btLocalScopeAccessor();
-                Accessor.Bind( "Name", Data.Description );
-                Accessor.Bind( "Position", Position );
-
-                new AlertDialog.Builder( CallingView.getContext() )
-                        .setTitle( "Select action" )
-                        .setMessage( "Would you like to delete this entry? Or move this entry to your shopping list?" )
-                        .setPositiveButton( "Delete", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick( DialogInterface dialog, int Which ) {
-                                btInventoryHandler.RemoveProductFromPantry( (String)Accessor.Access( "Name" ).InternalObject );
-                                Adapter.Remove( (int)Accessor.Access( "Position" ).InternalObject );
-                                Adapter.notifyDataSetChanged();
-                            }
-                        } )
-                        .setNegativeButton( "Move", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick( DialogInterface Dialog, int Which ) {
-                                btInventoryHandler.MoveProductToShoppingList( (String)Accessor.Access( "Name" ).InternalObject, false );
-                            }
-                        } )
-                        .setIcon( android.R.drawable.ic_dialog_alert )
-                        .show();
+                btInventoryHandler.RemoveProductFromPantry( Data.Description );
+                Adapter.Remove( Position );
+                Adapter.notifyDataSetChanged();
 
                 return false;
             }

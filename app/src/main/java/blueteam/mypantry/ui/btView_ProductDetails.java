@@ -59,6 +59,8 @@ public class btView_ProductDetails extends Activity {
                 Product.PurchaseDate = EditTextProductPurchaseDate.getText().toString();
 
                 btInventoryHandler.AddProductToPantry( Product );
+
+                btActivityHelpers.SwitchView( CallingView.getContext(), btView_Home.class );
             }
         } );
 
