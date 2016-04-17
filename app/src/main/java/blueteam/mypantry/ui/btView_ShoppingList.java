@@ -1,6 +1,8 @@
 package blueteam.mypantry.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,10 +12,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import blueteam.mypantry.core.btInventoryHandler;
 import blueteam.mypantry.core.btProduct;
+import blueteam.mypantry.runtime.btLocalScopeAccessor;
 import blueteam.mypantry.ui.adapters.btListViewAdapter;
 import blueteam.mypantry.ui.adapters.btListViewAdapterData;
 import blueteam.mypantry.ui.helpers.btActivityHelpers;
 import blueteam.mypantry.ui.helpers.btActivityPersistence;
+import blueteam.mypantry.ui.shared.btAddMethod;
 import blueteam.mypanty.R;
 
 import java.util.ArrayList;
@@ -34,8 +38,6 @@ public class btView_ShoppingList extends Activity {
         } );
 
         ListViewShoppingListContents = (ListView)findViewById( R.id.ListViewShoppingListContents );
-
-        ListViewShoppingListContents = (ListView)findViewById( R.id.PantryList );
         Adapter = new btListViewAdapter( this, ShoppingListContents );
         ListViewShoppingListContents.setAdapter( Adapter );
 
@@ -59,9 +61,29 @@ public class btView_ShoppingList extends Activity {
             @Override
             public boolean onItemLongClick( AdapterView< ? > Parent, View CallingView, int Position, long ID ) {
                 btListViewAdapterData Data = (btListViewAdapterData)ListViewShoppingListContents.getItemAtPosition( Position );
-                btInventoryHandler.RemoveProductFromPantry( Data.Description );
-                Adapter.Remove( Position );
-                Adapter.notifyDataSetChanged();
+                final btLocalScopeAccessor Accessor = new btLocalScopeAccessor();
+                Accessor.Bind( "Name", Data.Description );
+                Accessor.Bind( "Position", Position );
+
+                new AlertDialog.Builder( CallingView.getContext() )
+                        .setTitle( "Select action" )
+                        .setMessage( "Would you like to delete this entry? Or move this entry to your shopping list?" )
+                        .setPositiveButton( "Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick( DialogInterface dialog, int Which ) {
+                                btInventoryHandler.RemoveProductFromPantry( (String)Accessor.Access( "Name" ).InternalObject );
+                                Adapter.Remove( (int)Accessor.Access( "Position" ).InternalObject );
+                                Adapter.notifyDataSetChanged();
+                            }
+                        } )
+                        .setNegativeButton( "Move", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick( DialogInterface Dialog, int Which ) {
+                                btInventoryHandler.MoveProductToShoppingList( (String)Accessor.Access( "Name" ).InternalObject, false );
+                            }
+                        } )
+                        .setIcon( android.R.drawable.ic_dialog_alert )
+                        .show();
 
                 return false;
             }
