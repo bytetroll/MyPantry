@@ -57,9 +57,8 @@ public class btView_Pantry extends Activity {
         ListViewPantryContents.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick( AdapterView<?> Parent, View CallingView, int Position, long ID ) {
-                final String SelectedProductName = (String)ListViewPantryContents.getItemAtPosition( Position );
-                btInventoryHandler.RemoveProductFromPantry( SelectedProductName );
-
+                btListViewAdapterData Data = (btListViewAdapterData)ListViewPantryContents.getItemAtPosition( Position );
+                btInventoryHandler.RemoveProductFromPantry( Data.Description );
                 Adapter.Remove( Position );
                 Adapter.notifyDataSetChanged();
 

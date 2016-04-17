@@ -78,12 +78,16 @@ public class btView_ProductDetails extends Activity {
             ButtonAdd.setText( "Update" );
 
             EditTextProductName.setText( SelectedProduct.Name );
-            EditTextProductQuantity.setText( SelectedProduct.Quantity );
+            EditTextProductQuantity.setText( String.valueOf( SelectedProduct.Quantity ) );
             EditTextProductCategory.setText( SelectedProduct.Category );
             EditTextProductPerishDate.setText( SelectedProduct.PerishDate );
             EditTextProductPrice.setText( String.valueOf( SelectedProduct.Price ) );
 
             CheckBoxPerishable.setChecked( SelectedProduct.Perishable );
+
+            if( !SelectedProduct.Perishable ) {
+                EditTextProductPerishDate.setVisibility( View.INVISIBLE );
+            }
         }
     }
 
