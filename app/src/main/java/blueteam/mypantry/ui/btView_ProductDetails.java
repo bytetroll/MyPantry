@@ -1,4 +1,4 @@
-package blueteam.mypantry.ui.views;
+package blueteam.mypantry.ui;
 
 import android.app.Activity;
 import android.os.Bundle;

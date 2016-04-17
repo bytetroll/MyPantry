@@ -1,30 +1,22 @@
-package blueteam.mypantry.ui.viewcontainer;
+package blueteam.mypantry.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.*;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 
+import android.widget.TextView;
 import blueteam.mypantry.async.btConnectionWatcher;
 import blueteam.mypantry.async.btLocalDatabaseSyncer;
 import blueteam.mypantry.runtime.btLocalScopeAccessor;
-import blueteam.mypantry.runtime.btRuntime;
-import blueteam.mypantry.ui.adapters.btListViewAdapter;
-import blueteam.mypantry.ui.adapters.btListViewAdapterData;
 import blueteam.mypantry.ui.helpers.btActivityHelpers;
 import blueteam.mypantry.ui.helpers.btActivityPersistence;
 import blueteam.mypantry.ui.shared.btAddMethod;
-import blueteam.mypantry.ui.views.btView_ProductDetails;
 import com.google.zxing.integration.android.IntentIntegrator;
-
-import java.util.ArrayList;
 
 
 import blueteam.mypanty.R;
@@ -35,13 +27,22 @@ public class btView_Home extends Activity {
     protected void onCreate( Bundle SavedState ) {
         super.onCreate( SavedState );
 
-        setContentView( R.layout.btui_view_container );
+        setContentView( R.layout.btui_view_home );
 
         ButtonAdd = (Button)findViewById( R.id.ButtonAdd );
         ButtonAdd.setOnClickListener( new OnClickListener() {
             @Override
             public void onClick( View CallingView ) {
                 OnClick_AddButton( CallingView );
+            }
+        } );
+
+        TextViewToPantry = (TextView)findViewById( R.id.TextViewHomeToPantry );
+        TextViewToPantry.setOnClickListener( new OnClickListener() {
+            @Override
+            public void onClick( View CallingView ) {
+                Intent NewIntent = new Intent( CallingView.getContext(), btView_Pantry.class );
+                startActivity( NewIntent );
             }
         } );
 
@@ -86,6 +87,7 @@ public class btView_Home extends Activity {
     }
 
     private Button ButtonAdd;
+    private TextView TextViewToPantry;
 
     /*
     @Override
