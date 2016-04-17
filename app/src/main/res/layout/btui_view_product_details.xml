@@ -18,7 +18,7 @@
             android:id="@+id/TextViewProductLabel"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="0dp"
             android:enabled="true" />
 
         <EditText
@@ -35,7 +35,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Quantity"
             android:id="@+id/TextViewProductQuantityLabel"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="5dp"
             android:layout_below="@+id/EditTextProductName"
             android:layout_centerHorizontal="true"
             android:enabled="true" />
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:text="Perishable"
             android:id="@+id/CheckBoxProductPerishable"
-            android:layout_marginTop="39dp"
+            android:layout_marginTop="5dp"
             android:layout_below="@+id/EditTextProductQuantity"
             android:layout_alignRight="@+id/TextViewProductQuantityLabel"
             android:layout_alignEnd="@+id/TextViewProductQuantityLabel"
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:id="@+id/button_add_or_save"
+                android:id="@+id/ButtonAdd"
                 android:enabled="true" android:layout_marginLeft="100dp"/>
 
             <Button
@@ -98,11 +98,35 @@
                   android:textAppearance="?android:attr/textAppearanceLarge" android:text="Purchase Date"
                   android:id="@+id/TextViewProductPurchaseDateLabel"
                   android:enabled="true" android:layout_below="@+id/EditTextProductPerishDate"
-                  android:layout_centerHorizontal="true" android:layout_marginTop="37dp"/>
+                  android:layout_centerHorizontal="true" android:layout_marginTop="5dp"/>
         <EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="date"
                   android:ems="10" android:id="@+id/EditTextProductPurchaseDate"
                   android:clickable="false" android:enabled="true"
                   android:layout_below="@+id/TextViewProductPurchaseDateLabel" android:layout_centerHorizontal="true"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceLarge" android:text="Category"
+                  android:id="@+id/TextViewCategoryLabel"
+                  android:enabled="true"
+                  android:layout_below="@+id/EditTextProductPurchaseDate"
+                  android:layout_alignLeft="@+id/TextViewProductQuantityLabel"
+                  android:layout_alignStart="@+id/TextViewProductQuantityLabel" android:layout_marginTop="5dp"/>
+        <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                  android:id="@+id/editText"
+                  android:enabled="true" android:layout_above="@+id/TextViewCategoryLabel"
+                  android:layout_alignLeft="@+id/EditTextProductQuantity"/>
+        <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                  android:id="@+id/EditTextProductCategory"
+                  android:enabled="true" android:layout_below="@+id/TextViewCategoryLabel" android:layout_centerHorizontal="true"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceLarge" android:text="Price"
+                  android:id="@+id/TextViewProductPriceLabel"
+                  android:enabled="true"
+                  android:layout_below="@+id/EditTextProductCategory" android:layout_centerHorizontal="true"/>
+        <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                  android:id="@+id/EditTextProductPrice"
+                  android:enabled="true"
+                  android:layout_below="@+id/TextViewProductPriceLabel" android:layout_alignRight="@+id/EditTextProductPurchaseDate"
+                  android:layout_alignEnd="@+id/EditTextProductPurchaseDate" android:inputType="numberDecimal"/>
 
     </RelativeLayout>
 

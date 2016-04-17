@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
+import blueteam.mypantry.core.btInventoryHandler;
+import blueteam.mypantry.core.btProduct;
 import blueteam.mypanty.R;
 
 public class btView_ProductDetails extends Activity {
@@ -15,13 +17,6 @@ public class btView_ProductDetails extends Activity {
         setContentView( R.layout.btui_view_product_details );
 
         ButtonAdd = (Button)findViewById( R.id.ButtonAdd );
-        ButtonAdd.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick( View CallingView ) {
-
-            }
-        } );
-
         ButtonDelete = (Button)findViewById( R.id.ButtonDelete );
 
         EditTextProductName = (EditText)findViewById( R.id.EditTextProductName );
@@ -32,28 +27,49 @@ public class btView_ProductDetails extends Activity {
             @Override
             public void onCheckedChanged( CompoundButton ButtonView, boolean Checked ) {
                 if( Checked ) {
-                    EditTextPerishDate.setVisibility( View.VISIBLE );
+                    EditTextProductPerishDate.setVisibility( View.VISIBLE );
                 } else {
-                    EditTextPerishDate.setVisibility( View.INVISIBLE );
+                    EditTextProductPerishDate.setVisibility( View.INVISIBLE );
                 }
             }
         } );
 
-        EditTextPerishDate = (EditText)findViewById( R.id.EditTextProductPerishDate );
+        EditTextProductPerishDate = (EditText)findViewById( R.id.EditTextProductPerishDate );
 
         // Insert Checkbox restore code here.  Otherwise first check sends the wrong signal
         // to the event handlers.
 
-        EditTextProductPurhcaseDate = (EditText)findViewById( R.id.EditTextProductPurchaseDate );
+        EditTextProductPurchaseDate = (EditText)findViewById( R.id.EditTextProductPurchaseDate );
+
+        EditTextProductCategory = (EditText)findViewById( R.id.EditTextProductCategory );
+        EditTextProductPrice = (EditText)findViewById( R.id.EditTextProductPrice );
+
+        ButtonAdd.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View CallingView ) {
+                btProduct Product = new btProduct();
+                Product.Name = EditTextProductName.getText().toString();
+                Product.Category = EditTextProductCategory.getText().toString();
+                Product.Quantity = Integer.parseInt( EditTextProductQuantity.getText().toString() );
+                Product.Perishable = CheckBoxPerishable.isChecked();
+                Product.PerishDate = EditTextProductPerishDate.getText().toString();
+                Product.Price = Float.parseFloat( EditTextProductPrice.getText().toString() );
+                Product.PurchaseDate = EditTextProductPurchaseDate.getText().toString();
+
+                btInventoryHandler.AddProductToPantry( Product );
+            }
+        } );
     }
 
     private Button ButtonAdd = null;
     private Button ButtonDelete = null;
 
-    private EditText EditTextPerishDate = null;
+    private EditText EditTextProductPerishDate = null;
     private EditText EditTextProductQuantity = null;
     private EditText EditTextProductName = null;
-    private EditText EditTextProductPurhcaseDate = null;
+    private EditText EditTextProductPurchaseDate = null;
+    private EditText EditTextProductCategory = null;
+    private EditText EditTextProductPrice = null;
 
     private CheckBox CheckBoxPerishable = null;
 
