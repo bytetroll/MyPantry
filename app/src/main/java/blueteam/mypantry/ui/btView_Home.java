@@ -46,6 +46,15 @@ public class btView_Home extends Activity {
             }
         } );
 
+        TextViewToShoppingList = (TextView)findViewById( R.id.TextViewHomeToShoppingList );
+        TextViewToShoppingList.setOnClickListener( new OnClickListener() {
+            @Override
+            public void onClick( View CallingView ) {
+                Intent NewIntent = new Intent( CallingView.getContext(), btView_ShoppingList.class );
+                startActivity( NewIntent );
+            }
+        } );
+
         // Start async threads.
         new btConnectionWatcher().start();
         new btLocalDatabaseSyncer().start();
@@ -88,6 +97,7 @@ public class btView_Home extends Activity {
 
     private Button ButtonAdd;
     private TextView TextViewToPantry;
+    private TextView TextViewToShoppingList;
 
     /*
     @Override

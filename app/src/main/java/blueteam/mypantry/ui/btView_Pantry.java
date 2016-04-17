@@ -1,11 +1,14 @@
 package blueteam.mypantry.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import android.widget.TextView;
 import blueteam.mypantry.ui.adapters.btListViewAdapterData;
 import blueteam.mypanty.R;
 import blueteam.mypantry.ui.adapters.btListViewAdapter;
@@ -15,6 +18,16 @@ public class btView_Pantry extends Activity {
     protected void onCreate( Bundle SavedInstanceState ) {
         super.onCreate( SavedInstanceState );
         setContentView( R.layout.btui_view_pantry );
+
+        TextViewToHome = (TextView)findViewById( R.id.TextViewPantryToHome );
+        TextViewToHome.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View CallingView ) {
+                Intent NewIntent = new Intent( CallingView.getContext(), btView_Home.class );
+                startActivity( NewIntent );
+            }
+        } );
+
 
         ListView view = (ListView)findViewById( R.id.PantryList );
         Adapter = new btListViewAdapter( this, PantryContents );
@@ -31,4 +44,7 @@ public class btView_Pantry extends Activity {
 
     private ArrayList< btListViewAdapterData > PantryContents = new ArrayList<>();
     private btListViewAdapter Adapter;
+
+    private TextView TextViewToHome;
+
 }
